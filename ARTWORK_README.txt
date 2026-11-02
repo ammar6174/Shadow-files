@@ -1,0 +1,1 @@
+SHADOW FILES visual edition\n\n12 original cinematic noir artwork panels are included in assets/.\nThe CSS maps them to case cards, evidence cards, suspect/person cards, modes, and the main hero.\nAll original game logic and backend files are retained from the supplied archive.\n

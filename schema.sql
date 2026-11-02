@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY, username TEXT NOT NULL UNIQUE COLLATE NOCASE, salt TEXT NOT NULL, password_hash TEXT NOT NULL, created_at INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS rooms (id TEXT PRIMARY KEY, code TEXT NOT NULL UNIQUE, host_id TEXT NOT NULL, game_state TEXT NOT NULL DEFAULT '{}', status TEXT NOT NULL DEFAULT 'active', updated_at INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS members (room_id TEXT NOT NULL, user_id TEXT NOT NULL, display_name TEXT NOT NULL, last_seen INTEGER NOT NULL, PRIMARY KEY(room_id,user_id), FOREIGN KEY(room_id) REFERENCES rooms(id) ON DELETE CASCADE, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE);
+CREATE INDEX IF NOT EXISTS idx_rooms_code_status ON rooms(code,status);
+CREATE INDEX IF NOT EXISTS idx_members_room ON members(room_id);
